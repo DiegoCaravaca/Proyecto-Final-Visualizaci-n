@@ -39,8 +39,8 @@ def load_data(path1: str, path2: str) -> pd.DataFrame:
     """
     # Lectura de CSV con tipado consistente y parseo de fechas para facilitar
     # agrupaciones temporales (year, month, week, etc.).
-    df1 = pd.read_parquet(path1, dtype=DTYPES, parse_dates=["date"])
-    df2 = pd.read_parquet(path2, dtype=DTYPES, parse_dates=["date"])
+    df1 = pd.read_parquet(path1)
+    df2 = pd.read_parquet(path2)
 
     # Concatena preservando el índice consecutivo.
     df = pd.concat([df1, df2], ignore_index=True)
