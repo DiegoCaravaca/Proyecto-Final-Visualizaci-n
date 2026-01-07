@@ -22,7 +22,7 @@ def config_page():
 
 
 # load_data: carga + limpieza (cache)
-#@st.cache_data
+@st.cache_data
 def load_data(path1: str, path2: str) -> pd.DataFrame:
     """Carga, concatena y realiza una limpieza mínima de los datos.
 
