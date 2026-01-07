@@ -41,14 +41,13 @@ def load_data(path1: str, path2: str) -> pd.DataFrame:
     # agrupaciones temporales (year, month, week, etc.).
     df1 = pd.read_parquet(path1)
     df2 = pd.read_parquet(path2)
-    df1["date"] = pd.to_datetime(df1["date"])
-    df2["date"] = pd.to_datetime(df2["date"])
     # Concatena preservando el índice consecutivo.
     df = pd.concat([df1, df2], ignore_index=True)
     # Aplicar tipos columna por columna
     for col, dtype in DTYPES.items():
         if col in df.columns:
             df[col] = df[col].astype(dtype)
+    df["date"] = pd.to_datetime(df["date"])
     # Limpieza mínima: elimina columna residual si existe.
     df.drop(columns=["Unnamed: 0"], errors="ignore", inplace=True)
 
